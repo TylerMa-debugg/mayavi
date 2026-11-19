@@ -97,12 +97,12 @@ spec:
                     withSonarQubeEnv('sonarqube') {
                         script {
                             sh '''
-                                curl -s -u "$SONAR_AUTH_TOKEN:" "$SONAR_HOST_URL/api/issues/search?componentKeys=$SONAR_PROJECT_KEY&resolved=false&ps=1&facets=severities" > all-issues.json
-                                curl -s -u "$SONAR_AUTH_TOKEN:" "$SONAR_HOST_URL/api/issues/search?componentKeys=$SONAR_PROJECT_KEY&resolved=false&ps=1&severities=$GATE" > gate-issues.json
+                                curl -s -u "$SONAR_AUTH_TOKEN:" "$SONAR_HOST_URL/api/issues/search?componentKeys=$SONAR_PROJECT_KEY&resolved=false&ps=1&facets=severities" > /tmp/all-issues.json
+                                curl -s -u "$SONAR_AUTH_TOKEN:" "$SONAR_HOST_URL/api/issues/search?componentKeys=$SONAR_PROJECT_KEY&resolved=false&ps=1&severities=$GATE" > /tmp/gate-issues.json
                                 echo "Open issues by severity:"
-                                jq -r '.facets[] | select(.property == "severities") | .values[] | "  " + .val + ": " + (.count | tostring)' all-issues.json
+                                jq -r '.facets[] | select(.property == "severities") | .values[] | "  " + .val + ": " + (.count | tostring)' /tmp/all-issues.json
                             '''
-                            def blocking = sh(returnStdout: true, script: "jq -r .total gate-issues.json").trim()
+                            def blocking = sh(returnStdout: true, script: "jq -r .total /tmp/gate-issues.json").trim()
                             env.BLOCKING_ISSUES = blocking
                             currentBuild.description = "${env.GATE} issues: ${blocking}"
                             if (blocking == '0') {
