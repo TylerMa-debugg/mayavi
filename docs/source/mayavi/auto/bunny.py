@@ -33,7 +33,8 @@ if not os.path.exists(bunny_ply_file):
         os.mkdir('bunny_data')
     except:
         pass
-    bunny_tar_file.extractall('bunny_data', filter='data')
+    bunny_tar_file.extraction_filter = tarfile.data_filter
+    bunny_tar_file.extractall('bunny_data')
     bunny_tar_file.close()
 
 # Render the bunny ply file

@@ -33,7 +33,8 @@ if not os.path.exists(lucy_ply_file):
         os.mkdir('lucy_data')
     except:
         pass
-    lucy_tar_file.extractall('lucy_data', filter='data')
+    lucy_tar_file.extraction_filter = tarfile.data_filter
+    lucy_tar_file.extractall('lucy_data')
     lucy_tar_file.close()
 
 # Render the lucy ply file

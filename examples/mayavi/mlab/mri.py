@@ -39,7 +39,8 @@ if not os.path.exists(mri_slice_file):
         os.mkdir('mri_data')
     except:
         pass
-    tar_file.extractall('mri_data', filter='data')
+    tar_file.extraction_filter = tarfile.data_filter
+    tar_file.extractall('mri_data')
     tar_file.close()
 
 

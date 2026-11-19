@@ -33,7 +33,8 @@ if not os.path.exists(dragon_ply_file):
         os.mkdir('dragon_data')
     except:
         pass
-    dragon_tar_file.extractall('dragon_data', filter='data')
+    dragon_tar_file.extraction_filter = tarfile.data_filter
+    dragon_tar_file.extractall('dragon_data')
     dragon_tar_file.close()
 
 # Render the dragon ply file
