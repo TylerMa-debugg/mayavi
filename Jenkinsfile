@@ -64,7 +64,7 @@ spec:
             steps {
                 container('sonar-scanner') {
                     withSonarQubeEnv('sonarqube') {
-                        sh 'sonar-scanner -Dsonar.projectKey=$SONAR_PROJECT_KEY -Dsonar.projectName=mayavi -Dsonar.sources=. -Dsonar.python.version=3 -Dsonar.sourceEncoding=UTF-8'
+                        sh 'sonar-scanner -Dsonar.projectKey=$SONAR_PROJECT_KEY -Dsonar.projectName=mayavi -Dsonar.sources=. -Dsonar.python.version=3.12 -Dsonar.sourceEncoding=UTF-8'
                     }
                 }
             }
