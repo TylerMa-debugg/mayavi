@@ -60,7 +60,7 @@ class TestPerspective(Perspective):
 class MyPlugin(Plugin):
 
     # Extension points we contribute to.
-    PERSPECTIVES = 'envisage.ui.workbench.perspectives'
+    PERSPECTIVES_ID = 'envisage.ui.workbench.perspectives'
 
     # The plugin's unique identifier.
     id = 'tvtk_example_plugin'
@@ -69,7 +69,7 @@ class MyPlugin(Plugin):
     name = 'TVTK example plugin'
 
     # Perspectives.
-    perspectives = List(contributes_to=PERSPECTIVES)
+    perspectives = List(contributes_to=PERSPECTIVES_ID)
 
     def _perspectives_default(self):
         """ Trait initializer. """

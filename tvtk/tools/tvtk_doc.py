@@ -209,14 +209,14 @@ class DocSearch(object):
 
     # These are class attributes to prevent regenerating them everytime
     # this class is instantiated.
-    VTK_CLASSES = []
+    VTK_CLASS_NAMES = []
     VTK_CLASS_DOC = []
 
     def __init__(self):
-        self.vtk_classes = self.VTK_CLASSES
+        self.vtk_classes = self.VTK_CLASS_NAMES
         self.vtk_c_doc = self.VTK_CLASS_DOC
 
-        if len(self.VTK_CLASSES) == 0:
+        if len(self.VTK_CLASS_NAMES) == 0:
             self._setup_data()
 
     def _setup_data(self):

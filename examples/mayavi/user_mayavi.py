@@ -203,13 +203,13 @@ from envisage.api import Plugin, ServiceOffer
 class WorkerPlugin(Plugin):
 
     # Extension point Ids.
-    SERVICE_OFFERS = 'envisage.ui.workbench.service_offers'
-    VIEWS          = 'envisage.ui.workbench.views'
+    SERVICE_OFFERS_ID = 'envisage.ui.workbench.service_offers'
+    VIEWS_ID          = 'envisage.ui.workbench.views'
 
     # Services we contribute.
-    service_offers = List(contributes_to=SERVICE_OFFERS)
+    service_offers = List(contributes_to=SERVICE_OFFERS_ID)
     # Views.
-    views = List(contributes_to=VIEWS)
+    views = List(contributes_to=VIEWS_ID)
 
     ######################################################################
     # Private methods.

@@ -15,8 +15,8 @@ class SceneUIPlugin(Plugin):
     """
 
     # Extension point Ids.
-    ACTION_SETS       = 'envisage.ui.workbench.action_sets'
-    PREFERENCES_PAGES = 'envisage.ui.workbench.preferences_pages'
+    ACTION_SETS_ID       = 'envisage.ui.workbench.action_sets'
+    PREFERENCES_PAGES_ID = 'envisage.ui.workbench.preferences_pages'
 
     #### 'IPlugin' interface ##################################################
 
@@ -32,7 +32,7 @@ class SceneUIPlugin(Plugin):
 
     #### Contributions to extension points made by this plugin ################
 
-    action_sets = List(contributes_to=ACTION_SETS)
+    action_sets = List(contributes_to=ACTION_SETS_ID)
 
     def _action_sets_default(self):
         """ Trait initializer. """
@@ -43,7 +43,7 @@ class SceneUIPlugin(Plugin):
 
         return [SceneUIActionSet]
 
-    preferences_pages = List(contributes_to=PREFERENCES_PAGES)
+    preferences_pages = List(contributes_to=PREFERENCES_PAGES_ID)
 
     def _preferences_pages_default(self):
         """ Trait initializer. """

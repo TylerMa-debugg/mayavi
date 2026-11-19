@@ -44,9 +44,9 @@ class ExplorerPerspective(Perspective):
 class ExplorerPlugin(Plugin):
 
     # Extension points we contribute to.
-    PERSPECTIVES = 'envisage.ui.workbench.perspectives'
-    VIEWS             = 'envisage.ui.workbench.views'
-    SERVICE_OFFERS = 'envisage.ui.workbench.service_offers'
+    PERSPECTIVES_ID = 'envisage.ui.workbench.perspectives'
+    VIEWS_ID             = 'envisage.ui.workbench.views'
+    SERVICE_OFFERS_ID = 'envisage.ui.workbench.service_offers'
 
     # The plugin's unique identifier.
     id = 'explorer3d.Explorer3D'
@@ -55,13 +55,13 @@ class ExplorerPlugin(Plugin):
     name = '3D function explorer'
 
     # Perspectives.
-    perspectives = List(contributes_to=PERSPECTIVES)
+    perspectives = List(contributes_to=PERSPECTIVES_ID)
 
     # Services we contribute.
-    service_offers = List(contributes_to=SERVICE_OFFERS)
+    service_offers = List(contributes_to=SERVICE_OFFERS_ID)
 
     # Views.
-    views = List(contributes_to=VIEWS)
+    views = List(contributes_to=VIEWS_ID)
 
 
     ######################################################################

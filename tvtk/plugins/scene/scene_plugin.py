@@ -14,8 +14,8 @@ class ScenePlugin(Plugin):
     """ The TVTK render window scene plugin. """
 
     # Extension point Ids.
-    PREFERENCES    = 'envisage.preferences'
-    SERVICE_OFFERS = 'envisage.ui.workbench.service_offers'
+    PREFERENCES_ID    = 'envisage.preferences'
+    SERVICE_OFFERS_ID = 'envisage.ui.workbench.service_offers'
 
     #### 'IPlugin' interface ##################################################
 
@@ -31,14 +31,14 @@ class ScenePlugin(Plugin):
 
     #### Contributions to extension points made by this plugin ################
 
-    preferences = List(contributes_to=PREFERENCES)
+    preferences = List(contributes_to=PREFERENCES_ID)
 
     def _preferences_default(self):
         """ Trait initializer. """
 
         return ['pkgfile://%s/preferences.ini' % PKG]
 
-    service_offers = List(contributes_to=SERVICE_OFFERS)
+    service_offers = List(contributes_to=SERVICE_OFFERS_ID)
 
     def _service_offers_default(self):
         """ Trait initializer. """

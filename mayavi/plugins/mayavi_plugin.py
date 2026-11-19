@@ -18,8 +18,8 @@ ID = 'mayavi'
 class MayaviPlugin(Plugin):
 
     # Extension point Ids.
-    SERVICE_OFFERS = 'envisage.ui.workbench.service_offers'
-    PREFERENCES       = 'envisage.preferences'
+    SERVICE_OFFERS_ID = 'envisage.ui.workbench.service_offers'
+    PREFERENCES_ID       = 'envisage.preferences'
 
     # The plugins name.
     name = 'Mayavi plugin'
@@ -30,10 +30,10 @@ class MayaviPlugin(Plugin):
     ###### Contributions to extension points made by this plugin ######
 
     # Services we contribute.
-    service_offers = List(contributes_to=SERVICE_OFFERS)
+    service_offers = List(contributes_to=SERVICE_OFFERS_ID)
 
     # Preferences.
-    preferences = List(contributes_to=PREFERENCES)
+    preferences = List(contributes_to=PREFERENCES_ID)
 
     def _preferences_default(self):
         """ Trait initializer. """

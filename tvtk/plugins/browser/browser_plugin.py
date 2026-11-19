@@ -10,7 +10,7 @@ class BrowserPlugin(Plugin):
     """ The TVTK pipeline browser plugin. """
 
     # Extension point Ids.
-    VIEWS = 'envisage.ui.workbench.views'
+    VIEWS_ID = 'envisage.ui.workbench.views'
 
     #### 'IPlugin' interface ##################################################
 
@@ -26,7 +26,7 @@ class BrowserPlugin(Plugin):
 
     #### Contributions to extension points made by this plugin ################
 
-    views = List(contributes_to=VIEWS)
+    views = List(contributes_to=VIEWS_ID)
 
     def _views_default(self):
         """ Trait initializer. """

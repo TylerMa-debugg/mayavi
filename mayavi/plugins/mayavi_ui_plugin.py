@@ -65,11 +65,11 @@ class MayaviPerspective(Perspective):
 class MayaviUIPlugin(Plugin):
 
     # Extension point Ids.
-    VIEWS             = 'envisage.ui.workbench.views'
-    PERSPECTIVES      = 'envisage.ui.workbench.perspectives'
-    PREFERENCES_PAGES = 'envisage.ui.workbench.preferences_pages'
-    ACTION_SETS       = 'envisage.ui.workbench.action_sets'
-    BANNER            = 'envisage.plugins.ipython_shell.banner'
+    VIEWS_ID             = 'envisage.ui.workbench.views'
+    PERSPECTIVES_ID      = 'envisage.ui.workbench.perspectives'
+    PREFERENCES_PAGES_ID = 'envisage.ui.workbench.preferences_pages'
+    ACTION_SETS_ID       = 'envisage.ui.workbench.action_sets'
+    BANNER_ID            = 'envisage.plugins.ipython_shell.banner'
 
 
     # The plugins name.
@@ -81,19 +81,19 @@ class MayaviUIPlugin(Plugin):
     ###### Contributions to extension points made by this plugin ######
 
     # Views.
-    views = List(contributes_to=VIEWS)
+    views = List(contributes_to=VIEWS_ID)
 
     # Perspectives.
-    perspectives = List(contributes_to=PERSPECTIVES)
+    perspectives = List(contributes_to=PERSPECTIVES_ID)
 
     # Preferences pages.
-    preferences_pages = List(contributes_to=PREFERENCES_PAGES)
+    preferences_pages = List(contributes_to=PREFERENCES_PAGES_ID)
 
     # Our action sets.
-    action_sets = List(contributes_to=ACTION_SETS)
+    action_sets = List(contributes_to=ACTION_SETS_ID)
 
     # IPython banner
-    banner = List(contributes_to=BANNER)
+    banner = List(contributes_to=BANNER_ID)
 
     def _views_default(self):
         """ Trait initializer. """
