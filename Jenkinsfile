@@ -37,7 +37,7 @@ spec:
     }
 
     parameters {
-        string(name: 'GATE_SEVERITIES', defaultValue: 'BLOCKER,CRITICAL,MAJOR', description: 'SonarQube issue severities that prevent the Hadoop job from running')
+        string(name: 'GATE_SEVERITIES', defaultValue: 'BLOCKER', description: 'SonarQube issue severities that prevent the Hadoop job from running, for example BLOCKER or BLOCKER,CRITICAL,MAJOR')
     }
 
     options {
@@ -47,9 +47,10 @@ spec:
 
     environment {
         SONAR_PROJECT_KEY = 'mayavi'
-        GATE = "${params.GATE_SEVERITIES ?: 'BLOCKER,CRITICAL,MAJOR'}"
+        GATE = "${params.GATE_SEVERITIES ?: 'BLOCKER'}"
         HADOOP_NAMESPACE = 'hadoop'
         HADOOP_MASTER_POD = 'hadoop-master-0'
+        RUN_NAME = "mayavi-build-${env.BUILD_NUMBER}"
     }
 
     stages {
@@ -124,9 +125,13 @@ spec:
                     sh '''
                         set -o pipefail
                         tar -czf /tmp/repository.tar.gz --exclude=.git --exclude=.scannerwork .
-                        kubectl --kubeconfig /hadoop-kube/config -n "$HADOOP_NAMESPACE" exec -i "$HADOOP_MASTER_POD" -c resourcemanager -- /opt/linecount/run-linecount.sh mayavi < /tmp/repository.tar.gz | tee linecount-results.txt
+                        kubectl --kubeconfig /hadoop-kube/config -n "$HADOOP_NAMESPACE" exec -i "$HADOOP_MASTER_POD" -c resourcemanager -- /opt/linecount/run-linecount.sh "$RUN_NAME" < /tmp/repository.tar.gz | tee linecount-results.txt
+                        echo "Line count results for $(wc -l < linecount-results.txt) files stored in HDFS /linecount/output/$RUN_NAME/part-r-00000 and /linecount/latest/results.txt"
                     '''
                     archiveArtifacts artifacts: 'linecount-results.txt'
+                    script {
+                        currentBuild.description = "${env.GATE} issues: 0, Hadoop run ${env.RUN_NAME}"
+                    }
                 }
             }
         }
