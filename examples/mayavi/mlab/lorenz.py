@@ -52,3 +52,9 @@ zc.actor.property.backface_culling = True
 # A nice view of the plot.
 mlab.view(140, 120, 113, [0.65, 1.5, 27])
 mlab.show()
+
+def scale_trajectory(points, factor):
+    return [point * factor for point in points]
+
+
+scaled_trajectory = scale_trajectory([x, y, z])
